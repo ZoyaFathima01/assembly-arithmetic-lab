@@ -1,17 +1,19 @@
 section .data
-    var1    dd  7        ; example initialized value
-    result  dd  0        
+    var1 dd 5       ; example value
+    ten  dd 10
+
+section .bss
+    result resd 1
 
 section .text
     global _start
 
 _start:
-    mov     eax, [var1]  ; eax = var1
-    imul    eax, eax, 10 ; eax = var1 * 10
-    neg     eax          ; eax = -(var1 * 10)
-    mov     [result], eax
+    mov eax, [var1]     ; eax = var1
+    imul eax, [ten]     ; eax = var1 * 10
+    neg eax             ; eax = -eax
+    mov [result], eax   ; store result
 
     ; exit
-    mov     eax, 1
-    xor     ebx, ebx
-    int     0x80
+    mov eax, 1
+    int 0x80
